@@ -1,0 +1,1 @@
+- git: {local-name: turtlebot3, uri: 'https://github.com/Guillaumebeuzeboc/snapped_ros1_pkg.git', version: main}
