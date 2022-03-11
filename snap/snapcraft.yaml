@@ -13,8 +13,6 @@ parts:
     # See 'snapcraft plugins'
     plugin: catkin
     source: .
-    # catkin-packages:  # white list package to integrate
-    #   - snapped-ros1-pkg
     build-packages:
       - libboost-filesystem1.71.0
       - liblog4cxx-dev
@@ -26,16 +24,11 @@ parts:
       - ros-noetic-roslaunch # necessary if we need roslaunch
     override-pull: |
           # retrieve the vcs collection from github
-          #if [ ! -f collection-fortress.yaml ]; then wget https://raw.githubusercontent.com/ignition-tooling/gazebodistro/master/collection-fortress.yaml; fi
+          #if [ ! -f snapped_ros1_pkg.rosinstall ]; then wget https://raw.githubusercontent.com/Guillaumebeuzeboc/snapped_ros1_rosinstall/main/snapped_ros1_pkg.rosinstall; fi
           snapcraftctl pull
           # import ROS 1 package
           vcs import < snapped_ros1_pkg.rosinstall
 apps:
-#  roscore:   # necessary only if you want to start the roscore from this snap
-#    command: opt/ros/noetic/bin/roscore
-#    plugs: [network, network-bind]
-#    extensions: [ros1-noetic]
-#
   snapped-ros1-pkg:
     command: opt/ros/noetic/bin/rosrun snapped_ros1_pkg snapped_ros1_pkg_node
     plugs: [network, network-bind]
